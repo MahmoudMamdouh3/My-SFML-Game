@@ -27,20 +27,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(box2d)
 
-# --- Helper Macro to Create Separate Executables ---
+# --- Helper Macro ---
 macro(add_assignment_project TARGET_NAME SOURCE_FILE)
     add_executable(${TARGET_NAME}
         ${SOURCE_FILE}
-        src/glad.c   # Include GLAD in every assignment
+        src/glad.c
     )
-
-    # Enable C++17
     target_compile_features(${TARGET_NAME} PRIVATE cxx_std_17)
-
-    # Include folders (so it finds glad/glad.h)
     target_include_directories(${TARGET_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/include")
-
-    # Link Libraries (SFML 3 Style)
     target_link_libraries(${TARGET_NAME}
         PRIVATE
             SFML::Graphics
@@ -56,7 +50,10 @@ endmacro()
 # YOUR ASSIGNMENTS
 # ====================================================
 
-# Assignment 1: The code I provided below (Create this file!)
+# Register the old main.cpp as its own executable called "MainGame"
+add_assignment_project(MainGame "src/main.cpp")
+
+# Assignment 1: Color Wheel
 add_assignment_project(01_ColorWheel "src/graphics_course/01_ColorWheel.cpp")
 
 # Assignment 2: Sierpinski
@@ -69,9 +66,4 @@ add_assignment_project(03_Mandelbrot "src/graphics_course/03_Mandelbrot.cpp")
 add_assignment_project(04_LineDrawer "src/graphics_course/04_LineDrawer.cpp")
 
 # Assignment 5: Sin Wave
-
 add_assignment_project(05_SinWave "src/graphics_course/05_SinWave.cpp")
-
-
-# Note: I removed 'src/main.cpp' from the list to avoid confusion. 
-# You should use the specific assignment files above.
