@@ -1,4 +1,6 @@
-# --- Build and Output Directories ---
+# ====================================================
+# BUILD & OUTPUT DIRECTORIES
+# ====================================================
 build/
 out/
 bin/
@@ -9,26 +11,62 @@ cmake-build-release/
 CMakeFiles/
 .cache
 
-# --- Dependencies (Downloaded/Fetched) ---
+# ====================================================
+# DEPENDENCIES (Downloaded/Fetched)
+# ====================================================
 _deps/
 */_deps/
 build/_deps/
 temp_build/_deps/
 test_build/_deps/
 
-# --- IDE and Editor Files ---
+# ====================================================
+# IDE & EDITOR FILES
+# ====================================================
 .idea/
 .vs/
 .vscode/
 *.user
 *.suo
 *.ipch
+*.opensdf
+*.sdf
 
-# --- System Files ---
+# ====================================================
+# SYSTEM FILES
+# ====================================================
 .DS_Store
 Thumbs.db
+Desktop.ini
 
-# --- Temporary Files ---
+# ====================================================
+# TEMPORARY FILES & LOGS
+# ====================================================
 *.tmp
 *.temp
 *.log
+*.tlog
+
+# ====================================================
+# SAFETY NET (New Additions)
+# ====================================================
+
+# 1. CMake User Settings
+# Contains local paths (e.g. C:\Users\Name) that break on other PCs
+CMakeUserPresets.json
+
+# 2. Compiled Binaries (Prevention)
+# Prevents accidental upload if they end up outside the 'bin' folder
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.exp
+*.obj
+
+# 3. Archives
+# Prevents uploading zip backups of your own code
+*.zip
+*.rar
+*.7z

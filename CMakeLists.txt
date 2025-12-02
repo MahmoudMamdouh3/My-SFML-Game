@@ -1,48 +1,39 @@
 cmake_minimum_required(VERSION 3.28)
 project(MyGames LANGUAGES CXX C)
 
+# 1. Global Settings
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# Enable folders for IDE organization
+# Enable "Solution Folders" (cleaner view in Visual Studio)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+# 2. Dependencies (FetchContent)
 include(FetchContent)
 
-# Try to find SFML and Box2D on the system first
-find_package(SFML 3.0.2 QUIET)
-find_package(box2d QUIET)
+# --- SFML 3.0.2 ---
+FetchContent_Declare(
+    SFML
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG 3.0.2
+    GIT_SHALLOW ON
+    EXCLUDE_FROM_ALL
+)
+FetchContent_MakeAvailable(SFML)
 
-# If not found, fetch them
-if(NOT SFML_FOUND)
-    FetchContent_Declare(
-        SFML
-        GIT_REPOSITORY https://github.com/SFML/SFML.git
-        GIT_TAG 3.0.2
-        GIT_SHALLOW ON
-        EXCLUDE_FROM_ALL
-        SYSTEM
-    )
-    FetchContent_MakeAvailable(SFML)
-endif()
+# --- Box2D 2.4.2 ---
+FetchContent_Declare(
+    box2d
+    GIT_REPOSITORY https://github.com/erincatto/box2d.git
+    GIT_TAG v2.4.2
+    GIT_SHALLOW ON
+)
+FetchContent_MakeAvailable(box2d)
 
-if(NOT box2d_FOUND)
-    FetchContent_Declare(
-        box2d
-        GIT_REPOSITORY https://github.com/erincatto/box2d.git
-        GIT_TAG v2.4.2
-        GIT_SHALLOW ON
-        SYSTEM
-    )
-    FetchContent_MakeAvailable(box2d)
-endif()
-
-# Make shared resources available to all projects
-include_directories(${CMAKE_SOURCE_DIR}/shared/include)
-
-# Add project subdirectories
-add_subdirectory(projects/graphics_course)
-add_subdirectory(projects/physics_course)
-add_subdirectory(projects/main_game)
-
-# DSA course is currently empty, uncomment when ready
-# add_subdirectory(projects/DSA_OOP_Course)
+# 3. Add Sub-Projects
+# We MUST add 'core' first because everyone else relies on it
+add_subdirectory(core)
+add_subdirectory(studies)
+add_subdirectory(games)
+# add_subdirectory(sandbox) # Uncomment this when you are ready to use the sandbox folder
