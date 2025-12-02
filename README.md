@@ -1,12 +1,95 @@
-# CMake SFML Project Template
+# My Games - SFML Learning Projects
 
-This repository template should allow for a fast and hassle-free kick start of your next SFML project using CMake.
-Thanks to [GitHub's nature of templates](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template), you can fork this repository without inheriting its Git history.
+A collection of SFML-based game projects and learning exercises organized by course topics. This repository contains multiple projects demonstrating various graphics programming concepts, physics simulations, and game development techniques using SFML 3.0.
 
-The template starts out very basic, but might receive additional features over time:
+## Project Structure
 
-- Basic CMake script to build your project and link SFML on any operating system
-- Basic [GitHub Actions](https://github.com/features/actions) script for all major platforms
+```
+MyGames/
+├── projects/              # Individual project directories
+│   ├── graphics_course/   # Graphics programming assignments
+│   ├── physics_course/    # Physics simulations with Box2D
+│   ├── main_game/         # Main game project
+│   └── DSA_OOP_Course/    # Data structures & OOP projects
+├── shared/                # Shared resources across projects
+│   ├── assets/           # Images, sprites, etc.
+│   ├── include/          # Common headers (GLAD, KHR)
+│   └── src/              # Shared source files (glad.c)
+├── docs/                 # Documentation and project ideas
+└── CMakeLists.txt        # Root CMake configuration
+```
+
+## Projects
+
+### Graphics Course
+OpenGL-based graphics programming assignments:
+- **01_ColorWheel**: HSV color wheel visualization
+- **02_Sierpinski**: Sierpinski triangle fractal generation
+- **03_Mandelbrot**: Mandelbrot set rendering
+- **04_LineDrawer**: Interactive line drawing application
+- **05_SinWave**: Sine wave visualization
+
+### Physics Course
+Physics simulations using Box2D:
+- **SolarSystem Lab**: Basic solar system simulation
+- **SolarSystem**: Enhanced version with more features
+- **SolarSystem Complete**: Full-featured physics simulation
+
+### Main Game
+A placeholder for the main game project (currently minimal).
+
+## Building
+
+This project uses CMake and automatically fetches SFML 3.0.2 and Box2D v2.4.2 as dependencies.
+
+### Prerequisites
+- CMake 3.28 or later
+- C++17 compatible compiler
+- Git (for dependency fetching)
+
+### Quick Build
+
+```bash
+# Configure
+cmake -B build
+
+# Build all projects
+cmake --build build
+
+# Run a specific project
+./build/bin/01_ColorWheel
+```
+
+### Linux Dependencies
+On Ubuntu/Debian systems, install SFML system dependencies:
+
+```bash
+sudo apt update
+sudo apt install \
+    libxrandr-dev \
+    libxcursor-dev \
+    libxi-dev \
+    libudev-dev \
+    libfreetype-dev \
+    libflac-dev \
+    libvorbis-dev \
+    libgl1-mesa-dev \
+    libegl1-mesa-dev
+```
+
+### IDE Support
+- **Visual Studio**: Open the folder directly (CMake integration)
+- **VS Code**: Use CMake Tools extension
+- **CLion**: Native CMake support
+- **Qt Creator**: CMake project support
+
+## Dependencies
+
+- **SFML 3.0.2**: Graphics, window, and audio framework
+- **Box2D v2.4.2**: Physics engine for physics course projects
+- **GLAD**: OpenGL loader for graphics assignments
+
+All dependencies are automatically downloaded and built via CMake's FetchContent.
 
 ## Quick start
 
