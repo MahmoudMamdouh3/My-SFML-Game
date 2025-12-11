@@ -29,6 +29,43 @@ create_study_target(05_SinWave    "graphics_course/05_SinWave.cpp"    "Studies/G
 # 3. PHYSICS COURSE
 # ====================================================
 
+# D. Physics Engine Tasks
+add_executable(Physics_Engine_Task
+    "physics_course/tasks/Main.cpp"
+    "physics_course/tasks/Vector2d.cpp"
+    "physics_course/tasks/Renderer.cpp"
+    "physics_course/tasks/Collider.cpp"
+    "physics_course/tasks/AABBCollider.cpp"
+    "physics_course/tasks/SATCollider.cpp"
+    "physics_course/tasks/Particle.cpp"
+    "physics_course/tasks/PhysicsWorld.cpp"
+)
+
+# This allows your code to use #include "headers/..."
+target_include_directories(Physics_Engine_Task PRIVATE "physics_course/tasks")
+
+# Link SFML/Core
+target_link_libraries(Physics_Engine_Task PRIVATE Core)
+
+# Organize in Visual Studio solution explorer
+set_target_properties(Physics_Engine_Task PROPERTIES FOLDER "Studies/Physics")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # A. Solar System Lab
 add_executable(Physics_Lab
     "physics_course/lab/main.cpp"

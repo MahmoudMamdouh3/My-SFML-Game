@@ -29,6 +29,11 @@ FetchContent_Declare(
     GIT_TAG v2.4.2
     GIT_SHALLOW ON
 )
+
+# NEW: Disable Box2D's internal junk
+set(BOX2D_BUILD_TESTBED OFF CACHE BOOL "" FORCE)
+set(BOX2D_BUILD_UNIT_TESTS OFF CACHE BOOL "" FORCE)
+
 FetchContent_MakeAvailable(box2d)
 
 # 3. Add Sub-Projects
